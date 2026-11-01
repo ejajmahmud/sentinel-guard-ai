@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sentinel-guard-ai"
+version = "0.1.0"
+description = "Ultra-fast zero-latency prompt firewall, jailbreak detector, and canary watermarking for AI agents"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+    {name = "Ejaj Mahmud", email = "dev@ejajmahmud.com"}
+]
+keywords = ["llm-security", "prompt-injection", "canary-token", "jailbreak-prevention", "ai-guardrails"]
+dependencies = []
+
+[project.scripts]
+sentinel = "sentinel_guard_ai.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["sentinel_guard_ai*"]
