@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 280" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e1b4b" />
+    </linearGradient>
+    <filter id="shadow3" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <rect width="900" height="280" rx="16" fill="url(#bgGrad3)" />
+
+  <!-- Input -->
+  <g filter="url(#shadow3)">
+    <rect x="40" y="80" width="180" height="120" rx="10" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+    <text x="130" y="115" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700" fill="#f8fafc" text-anchor="middle">Untrusted Input</text>
+    <text x="130" y="145" font-family="monospace" font-size="11" fill="#f87171" text-anchor="middle">"Ignore previous rules"</text>
+    <text x="130" y="170" font-family="monospace" font-size="11" fill="#f87171" text-anchor="middle">Obfuscated Base64</text>
+  </g>
+
+  <!-- Arrow 1 -->
+  <path d="M 220 140 L 290 140" stroke="#f43f5e" stroke-width="3"/>
+  <polygon points="290,135 302,140 290,145" fill="#f43f5e"/>
+
+  <!-- Core Sentinel Shield -->
+  <g filter="url(#shadow3)">
+    <rect x="310" y="55" width="280" height="170" rx="14" fill="#111827" stroke="#ec4899" stroke-width="3"/>
+    <rect x="330" y="70" width="240" height="28" rx="6" fill="#831843"/>
+    <text x="450" y="89" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="800" fill="#fbcfe8" text-anchor="middle">SENTINEL GUARD ENGINE</text>
+    <text x="450" y="125" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" fill="#f8fafc" text-anchor="middle">1. Heuristic Jailbreak Filter</text>
+    <text x="450" y="150" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" fill="#f8fafc" text-anchor="middle">2. Shannon Entropy Scanner</text>
+    <text x="450" y="175" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" fill="#f8fafc" text-anchor="middle">3. Zero-Width Canary Watermarking</text>
+    <rect x="330" y="190" width="240" height="22" rx="4" fill="#065f46"/>
+    <text x="450" y="205" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#34d399" text-anchor="middle">LATENCY: &lt; 0.5ms (ZERO LLM CALL)</text>
+  </g>
+
+  <!-- Arrow 2 -->
+  <path d="M 590 140 L 660 140" stroke="#10b981" stroke-width="3"/>
+  <polygon points="660,135 672,140 660,145" fill="#10b981"/>
+
+  <!-- Output / Action -->
+  <g filter="url(#shadow3)">
+    <rect x="680" y="80" width="180" height="120" rx="10" fill="#1e293b" stroke="#10b981" stroke-width="2"/>
+    <text x="770" y="115" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700" fill="#34d399" text-anchor="middle">Sanitized Agent Call</text>
+    <text x="770" y="145" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">Safe Execution Path</text>
+    <text x="770" y="170" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" fill="#ec4899" text-anchor="middle">Canary Protected</text>
+  </g>
+</svg>

@@ -1,0 +1,13 @@
+LICENSE
+README.md
+pyproject.toml
+sentinel_guard_ai/__init__.py
+sentinel_guard_ai/canary.py
+sentinel_guard_ai/cli.py
+sentinel_guard_ai/firewall.py
+sentinel_guard_ai.egg-info/PKG-INFO
+sentinel_guard_ai.egg-info/SOURCES.txt
+sentinel_guard_ai.egg-info/dependency_links.txt
+sentinel_guard_ai.egg-info/entry_points.txt
+sentinel_guard_ai.egg-info/top_level.txt
+tests/test_sentinel.py

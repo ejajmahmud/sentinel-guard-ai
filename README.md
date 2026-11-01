@@ -1,8 +1,16 @@
 # Sentinel Guard AI 🛡️⚡
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/)
-[![Latency: Sub--Millisecond](https://img.shields.io/badge/Latency-%3C0.5ms-brightgreen.svg)]()
+<p align="center">
+  <img src="assets/architecture.svg" alt="Sentinel Guard AI Architecture" width="100%">
+</p>
+
+<p align="center">
+  <a href="https://github.com/ejajmahmud/sentinel-guard-ai/releases"><img src="https://img.shields.io/github/v/release/ejajmahmud/sentinel-guard-ai?color=blue&label=version" alt="GitHub release"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT"></a>
+  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/python-3.9+-3776AB.svg?style=flat&logo=python&logoColor=white" alt="Python 3.9+"></a>
+  <a href="https://github.com/ejajmahmud/sentinel-guard-ai/actions"><img src="https://img.shields.io/badge/latency-%3C0.5ms-brightgreen.svg" alt="Latency"></a>
+  <a href="https://github.com/ejajmahmud/sentinel-guard-ai/actions"><img src="https://img.shields.io/badge/tests-passing-brightgreen.svg" alt="Tests"></a>
+</p>
 
 **Sentinel Guard AI** is an ultra-fast, zero-latency local security firewall and canary watermarking engine for AI agents, LLM pipelines, and Model Context Protocol (MCP) servers.
 
@@ -10,7 +18,30 @@ It prevents prompt injections, detects jailbreak vectors, flags high-entropy obf
 
 ---
 
-## 🚀 Key Advantages
+## ⚡ Architecture Flow
+
+```mermaid
+flowchart TD
+    UserPrompt["Incoming Prompt / External Web Content"] --> Firewall{"Sentinel Firewall<br/>(&lt;0.5ms Check)"}
+    
+    Firewall -->|Instruction Override / Jailbreak| Blocked["🛑 Block Execution<br/>(Risk Score &gt; 0.40)"]
+    Firewall -->|Shannon Entropy &gt; 4.6| Obfuscated["⚠️ Obfuscated Payload Flagged"]
+    Firewall -->|Clean Prompt| SafePath["✓ Safe to Dispatch"]
+
+    subgraph Canary Protection
+        SysPrompt["Base System Instructions"] --> Watermarker["CanaryEngine.embed_watermark()<br/>(Zero-Width Unicode)"]
+        Watermarker --> ProtectedSys["Canary Protected System Prompt"]
+        ProtectedSys --> LLM["LLM Agent Execution"]
+        LLM --> AgentOutput["Agent Response"]
+        AgentOutput --> Detector{"CanaryEngine.detect_watermark()"}
+        Detector -->|Token Found| LeakAlert["🚨 System Prompt Exfiltration Alert"]
+        Detector -->|Clean| SafeOutput["✓ Clean Output Delivered"]
+    end
+```
+
+---
+
+## 📊 Comparison: Why Local Sub-Millisecond Guardrails Matter
 
 | Feature | Traditional LLM Guardrails | Sentinel Guard AI |
 |---|---|---|
@@ -18,14 +49,6 @@ It prevents prompt injections, detects jailbreak vectors, flags high-entropy obf
 | **API Cost** | $$ per check | **$0.00** |
 | **Prompt Exfiltration Detection** | Heuristics / Keyword match | **Invisible Zero-Width Canary Watermarking** |
 | **External Dependencies** | PyTorch / Transformers / HuggingFace | **Zero (Pure Python Standard Library)** |
-
----
-
-## ✨ Core Capabilities
-
-1. **Heuristic Prompt Firewall**: Catches instruction overrides (`"ignore previous instructions"`), DAN roleplays, delimiter breaks (`[INST]`, `<|im_start|>`), and system prompt extraction attacks.
-2. **Shannon Entropy Analysis**: Detects base64, hex, or compressed payload smuggling inside agent tool parameters.
-3. **Invisible Canary Watermarking**: Injects an imperceptible zero-width Unicode watermark into system prompts. If a compromised agent or attacker outputs the system instructions, Sentinel extracts the token signature instantly, even if the text formatting was altered.
 
 ---
 
@@ -39,7 +62,7 @@ pip install -e .
 
 ---
 
-## 🛠️ Usage
+## 🚀 Quickstart
 
 ### Python SDK
 
@@ -78,7 +101,7 @@ sentinel inspect-leak "Response text from untrusted LLM output"
 
 ---
 
-## 🧪 Testing
+## 🧪 Running Tests
 
 ```bash
 python -m unittest discover -s tests
